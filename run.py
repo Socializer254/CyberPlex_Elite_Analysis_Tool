@@ -1,8 +1,5 @@
-from app import create_app  # Ensure 'create_app' is defined in __init__.py
+import os
+from app import app  # Ensure 'app' is properly imported
 
-app = create_app()
-
-if __name__ == "__main__":
-    from waitress import serve
-    print("Starting server on http://127.0.0.1:5000")
-    serve(app, host="0.0.0.0", port=5000)
+port = int(os.environ.get("PORT", 5000))  # Use the PORT variable from Render
+app.run(debug=True, host="0.0.0.0", port=port)
